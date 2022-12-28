@@ -16,13 +16,11 @@ internal class UserDetailsServiceImplTest {
 
     private val userRepository: UserRepository = mockk()
 
-    private val passwordEncoder: PasswordEncoder = mockk()
-
     lateinit var mut: UserDetailsServiceImpl
 
     @BeforeEach
     fun setUp() {
-        mut = UserDetailsServiceImpl(userRepository, passwordEncoder)
+        mut = UserDetailsServiceImpl(userRepository)
     }
 
     @Test
@@ -54,17 +52,15 @@ internal class UserDetailsServiceImplTest {
         // given
         val username = "koangho93@naver.com"
         val user = User(username, "1234")
-        val encodedPassword = "4321"
 
         every { userRepository.findByEmail(username) } returns user
-        every { passwordEncoder.encode(user.password) } returns encodedPassword
 
         // when
         val userDetails = mut.loadUserByUsername(username)
 
         // then
         assertEquals(userDetails.username, user.email)
-        assertEquals(userDetails.password, encodedPassword)
+        assertEquals(userDetails.password, user.password)
         assertEquals(userDetails.authorities.first().authority, user.role.name)
     }
 }
