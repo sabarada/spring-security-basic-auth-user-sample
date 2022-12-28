@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class UserDetailsServiceImpl(
-    private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val userRepository: UserRepository
 ) : UserDetailsService {
 
     override fun loadUserByUsername(username: String?): UserDetails {
@@ -22,10 +21,6 @@ class UserDetailsServiceImpl(
         val user: User = userRepository.findByEmail(username)
             ?: throw NullPointerException("can't find this user. username: $username")
 
-        return UserDetailsImpl(
-            user.apply {
-                password = passwordEncoder.encode(this.password)
-            }
-        )
+        return UserDetailsImpl(user)
     }
 }

@@ -26,16 +26,10 @@ class SecurityConfig {
     }
 
     @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder()
-    }
-
-    @Bean
     fun userDetailsService(
-        userRepository: UserRepository,
-        passwordEncoder: PasswordEncoder
+        userRepository: UserRepository
     ): UserDetailsService {
-        return UserDetailsServiceImpl(userRepository, passwordEncoder)
+        return UserDetailsServiceImpl(userRepository)
     }
 
 }
