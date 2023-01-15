@@ -1,4 +1,4 @@
-package com.example.auth.gateway.example.config
+package com.example.auth.gateway.example.api
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
