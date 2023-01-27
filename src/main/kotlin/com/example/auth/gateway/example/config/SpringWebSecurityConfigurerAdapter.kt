@@ -2,6 +2,7 @@ package com.example.auth.gateway.example.config
 
 import com.example.auth.gateway.example.filter.LoggingFilter
 import com.example.auth.gateway.example.filter.RequestValidationFilter
+import com.example.auth.gateway.example.filter.StaticKeyAuthenticationFilter
 import com.example.auth.gateway.example.security.UserDetailsServiceImpl
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -29,6 +30,10 @@ class SpringWebSecurityConfigurerAdapter(
             )
             .addFilterAfter(
                 RequestValidationFilter(),
+                BasicAuthenticationFilter::class.java
+            )
+            .addFilterAt(
+                StaticKeyAuthenticationFilter(),
                 BasicAuthenticationFilter::class.java
             )
     }
