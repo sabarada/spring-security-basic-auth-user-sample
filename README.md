@@ -2,6 +2,11 @@
 
 해당 프로젝트는 Spring Security를 이용하여 인증된 유저만 API를 호출할 수 있도록 하는 샘플 프로젝트입니다.
 
+관련되어있는 블로그 내용은 아래와 같습니다.
+
+- [[Spring Security + JPA] JPA를 사용해서 Spring Security User 인증 서비스 만들기](https://sabarada.tistory.com/242)
+- [[Spring Security] 인증 Filter를 기준으로 Custom Filter 추가와 변경](https://sabarada.tistory.com/243)
+
 ## 환경
 
 - database : H2
